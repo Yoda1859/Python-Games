@@ -51,8 +51,8 @@ def load_image(file):
     file = os.path.join(main_dir, "data", file)
     try:
         surface = pg.image.load(file)
-    except pg.error:
-        raise SystemExit(f'Could not load image "{file}" {pg.get_error()}')
+    except pg.error:wdwasd
+    raise SystemExit(f'Could not load image "{file}" {pg.get_error()}')
     return surface.convert()
 
 

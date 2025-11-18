@@ -1,7 +1,7 @@
 """
 
 Moving Square
-
+ht
 All this game does is move a square around the screen using the arrow keys.
 The square is constrained to the screen, so it can't go off the edges. 
 
@@ -83,7 +83,7 @@ def main():
         screen.fill(BACKGROUND_COLOR)
 
         # Draw the square
-        pygame.draw.rect(screen, SQUARE_COLOR, (x, y, SQUARE_SIZE, SQUARE_SIZE))
+        pygame.draw.circle(screen, (x, y, SQUARE_SIZE, SQUARE_SIZE), SQUARE_COLOR, center=(0,0), radius=1)
 
         # Update the display. Imagine that the screen is two different whiteboards. One
         # whiteboard is currently visible to the player, and the other whiteboard is being
