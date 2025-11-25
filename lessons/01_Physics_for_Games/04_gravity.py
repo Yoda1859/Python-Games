@@ -47,6 +47,8 @@ player = pygame.Rect(settings.player_x,
                      settings.screen_height - settings.player_size, 
                      settings.player_size, settings.player_size)
 
+keys = pygame.key.get_pressed()
+
 is_jumping = False
 
 # Main game loop
@@ -65,19 +67,22 @@ while running:
         # Jumping means that the player is going up. The top of the 
         # screen is y=0, and the bottom is y=SCREEN_HEIGHT. So, to go up,
         # we need to have a negative y velocity
-        d_v_y = -settings.jump_velocity
-        is_jumping = True
-
+        #d_v_y = -settings.jump_velocity
+        #is_jumping = True
+        if keys[pygame.K_SPACE]:
+            d_v_y =  settings.jump_velocity
+            is_jumping = True
+            
     # acelleration in sht y direction
-    a_y = settings.gravity
+            a_y = settings.gravity
 
     # Change in the velocity due to accelleration
-    d_v_y += a_y * settings.d_t
+            d_v_y += a_y * settings.d_t
 
     # Change in the position due to the velocity
-    d_y = d_v_y * settings.d_t
+            d_y = d_v_y * settings.d_t
 
-    player.y += d_y
+            player.y += d_y
 
     # If the player hits the ground, stop the player from falling.
     # The player's position is measured from the top left corner, so the

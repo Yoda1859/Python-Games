@@ -8,7 +8,7 @@ side of the screen.
 """
 import pygame
 from dataclasses import dataclass
-
+ 
 @dataclass
 class GameSettings:
     """Class for keeping track of game settings and constants."""
