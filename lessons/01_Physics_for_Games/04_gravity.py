@@ -12,7 +12,6 @@ from dataclasses import dataclass
 # Initialize Pygame
 pygame.init()
 
-
 # This is a data class, one way of storing settings and constants for a game.
 # We will create an instance of the data class, but since there is only one of
 # them, we could also use the class directly, like GameSettings.screen_width.
@@ -26,7 +25,7 @@ class GameSettings:
     screen_height: int = 500
     player_size: int = 10
     player_x: int = 100 # Initial x position of the player
-   
+
     jump_velocity: int = 200
     white: tuple = (255, 255, 255)
     black: tuple = (0, 0, 0)
@@ -38,14 +37,13 @@ class GameSettings:
 # Initialize game settings
 settings = GameSettings()
 
-
 # Initialize screen
 screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
 
 # Define player
 player = pygame.Rect(settings.player_x, 
-                     settings.screen_height - settings.player_size, 
-                     settings.player_size, settings.player_size)
+                    settings.screen_height - settings.player_size, 
+                    settings.player_size, settings.player_size)
 
 keys = pygame.key.get_pressed()
 
@@ -67,22 +65,19 @@ while running:
         # Jumping means that the player is going up. The top of the 
         # screen is y=0, and the bottom is y=SCREEN_HEIGHT. So, to go up,
         # we need to have a negative y velocity
-        #d_v_y = -settings.jump_velocity
-        #is_jumping = True
-        if keys[pygame.K_SPACE]:
-            d_v_y =  settings.jump_velocity
-            is_jumping = True
-            
+        d_v_y = -settings.jump_velocity
+        is_jumping is True
+
     # acelleration in sht y direction
-            a_y = settings.gravity
+        a_y = settings.gravity
 
     # Change in the velocity due to accelleration
-            d_v_y += a_y * settings.d_t
+        d_v_y += a_y * settings.d_t
 
     # Change in the position due to the velocity
-            d_y = d_v_y * settings.d_t
+        d_y = d_v_y * settings.d_t
 
-            player.y += d_y
+        player.y += d_y
 
     # If the player hits the ground, stop the player from falling.
     # The player's position is measured from the top left corner, so the

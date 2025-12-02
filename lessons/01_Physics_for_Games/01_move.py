@@ -13,7 +13,7 @@ import pygame
 pygame.init()
 
 # Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = 600, 600
+SCREEN_WIDTH, SCREEN_HEIGHT = 400, 400
 SQUARE_SIZE = 50
 SQUARE_COLOR = (0, 128, 255) # Red-Green-Blue color in the range 0-255
 BACKGROUND_COLOR = (255, 255, 255) # White
@@ -35,9 +35,9 @@ def main():
     # Initial position of the square
     x = SCREEN_WIDTH // 2 - SQUARE_SIZE // 2
     y = SCREEN_HEIGHT // 2 - SQUARE_SIZE // 2
-    
+
     running = True
-    
+
     while running:
 
         # Event handling
@@ -46,7 +46,7 @@ def main():
             # Check for clicking the close button
             if event.type == pygame.QUIT:
                 running = False
-        
+
         # Get the keys pressed. Gtes an array of all the keys
         # with a boolean value of whether they are pressed or not
         keys = pygame.key.get_pressed()
@@ -58,16 +58,16 @@ def main():
         # Move the square based on arrow keys
         if keys[pygame.K_a]:
             d_x = -v * d_t
-          
+
         if keys[pygame.K_d]:
             d_x = v * d_t
-          
+  
         if keys[pygame.K_w]:
             d_y = -v * d_t
-          
+
         if keys[pygame.K_s]:
             d_y = v * d_t
-           
+
         # Update the position of the square
         x = x + d_x
         y = y + d_y
@@ -84,7 +84,7 @@ def main():
 
         # Draw the square
         pygame.draw.rect(screen, SQUARE_COLOR, (x, y, SQUARE_SIZE, SQUARE_SIZE))
-        #pygame.draw.circle(screen, SQUARE_COLOR, (SQUARE_SIZE, SQUARE_SIZE), radius= 100)
+        #pygame.draw.circle(screen, SQUARE_COLOR, (SQUARE_SIZE, SQUARE_SIZE), radius= 50)
 
         # Update the display. Imagine that the screen is two different whiteboards. One
         # whiteboard is currently visible to the player, and the other whiteboard is being
