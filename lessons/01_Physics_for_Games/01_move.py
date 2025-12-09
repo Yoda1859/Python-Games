@@ -47,7 +47,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        # Get the keys pressed. Gtes an array of all the keys
+        # Get the keys pressed. Gets an array of all the keys
         # with a boolean value of whether they are pressed or not
         keys = pygame.key.get_pressed()
 
