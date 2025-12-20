@@ -13,11 +13,11 @@ import pygame
 pygame.init()
 
 # Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = 400, 400
-SQUARE_SIZE = 50
-SQUARE_COLOR = (0, 128, 255) # Red-Green-Blue color in the range 0-255
+SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
+SQUARE_SIZE = 10
+SQUARE_COLOR = (0, 100, 100) # Red-Green-Blue color in the range 0-255
 BACKGROUND_COLOR = (255, 255, 255) # White
-SQUARE_SPEED = 300 
+SQUARE_SPEED = 170 
 FPS = 60
 
 v = SQUARE_SPEED  # Speed of the square in pixels per second
@@ -37,12 +37,12 @@ def main():
     y = SCREEN_HEIGHT // 2 - SQUARE_SIZE // 2
 
     running = True
-
+    screen.fill(BACKGROUND_COLOR)
     while running:
 
         # Event handling
         for event in pygame.event.get():
-            
+
             # Check for clicking the close button
             if event.type == pygame.QUIT:
                 running = False
@@ -80,7 +80,7 @@ def main():
         # This will clear the screen by filling it 
         # with the background color. If we didn't do this, 
         # the square would leave a trail behind it.
-        screen.fill(BACKGROUND_COLOR)
+        #screen.fill(BACKGROUND_COLOR)
 
         # Draw the square
         pygame.draw.rect(screen, SQUARE_COLOR, (x, y, SQUARE_SIZE, SQUARE_SIZE))

@@ -26,7 +26,7 @@ class GameSettings:
     player_size: int = 10
     player_x: int = 100 # Initial x position of the player
 
-    jump_velocity: int = 200
+    jump_velocity: int = 170
     white: tuple = (255, 255, 255)
     black: tuple = (0, 0, 0)
 
@@ -62,9 +62,9 @@ while running:
     # Continuously jump. If the player is not jumping, initialize a new jump
     if is_jumping is False:
         if keys[pygame.K_LCTRL] and keys[pygame.K_SPACE]:
-            settings.jump_velocity = 230
-            d_v_y = -settings.jump_velocity
             settings.jump_velocity = 200
+            d_v_y = -settings.jump_velocity
+            settings.jump_velocity = 170
             is_jumping = True
 
         elif keys[pygame.K_SPACE]:

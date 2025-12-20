@@ -14,8 +14,8 @@ class GameSettings:
     """Class for keeping track of game settings and constants."""
     screen_width: int = 500
     screen_height: int = 500
-    square_size: int = 20
-    square_color: tuple = (0, 0, 0)  # Black
+    square_size: int = 10
+    square_color: tuple = (0, 100, 100)  # Black
     background_color: tuple = (255, 255, 255)  # White
     fps: int = 30
     gravity: float = 60.0  # Acceleration due to gravity
@@ -55,17 +55,23 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    keys = pygame.key.get_pressed()
+
     # Continuously jump. If the square is not jumping, make it jump
     if is_jumping is False:
-        # Jumping means that the square is going up. The top of the 
-        # screen is y=0, and the bottom is y=screen_height. So, to go up,
-        # we need to have a negative y velocity
-        
-        velocity_y = -settings.jump_velocity_y
-        velocity_x = settings.jump_velocity_x * x_direction
-        
-        is_jumping = True
-        
+        if keys[pygame.K_SPACE]:
+            settings.jump_velocity_x = 000.0
+            velocity_y = -settings.jump_velocity_y
+            settings.jump_velocity_x = 100.0
+            #velocity_x = settings.jump_velocity_x * x_direction
+            is_jumping = True
+
+        elif keys[pygame.K_d]:
+            velocity_x = settings.jump_velocity_x
+
+        elif keys[pygame.K_a]:
+            velocity_x = settings.jump_velocity_x * x_direction
+
     else: # the square is jumping
         # Update square position. Gravity is always pulling the square down,
         # which is the positive y direction, so we add settings.gravity to the y velocity
