@@ -8,7 +8,6 @@ The square is constrained to the screen, so it can't go off the edges.
 """
 import pygame
 
-
 # Initialize Pygame
 pygame.init()
 

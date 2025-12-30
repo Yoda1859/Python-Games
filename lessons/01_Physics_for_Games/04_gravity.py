@@ -61,7 +61,7 @@ while running:
 
     # Continuously jump. If the player is not jumping, initialize a new jump
     if is_jumping is False:
-        if keys[pygame.K_LCTRL] and keys[pygame.K_SPACE]:
+        if keys[pygame.K_LSHIFT] and keys[pygame.K_SPACE]:
             settings.jump_velocity = 200
             d_v_y = -settings.jump_velocity
             settings.jump_velocity = 170

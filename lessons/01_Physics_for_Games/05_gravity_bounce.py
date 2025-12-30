@@ -14,7 +14,7 @@ class GameSettings:
     """Class for keeping track of game settings and constants."""
     screen_width: int = 500
     screen_height: int = 500
-    square_size: int = 10
+    square_size: int = 15
     square_color: tuple = (0, 100, 100)  # Black
     background_color: tuple = (255, 255, 255)  # White
     fps: int = 30
@@ -68,16 +68,20 @@ while running:
 
         elif keys[pygame.K_d]:
             velocity_x = settings.jump_velocity_x
+            is_jumping = True
 
         elif keys[pygame.K_a]:
-            velocity_x = settings.jump_velocity_x * x_direction
+            velocity_x = -settings.jump_velocity_x
+            is_jumping = True
 
     else: # the square is jumping
         # Update square position. Gravity is always pulling the square down,
         # which is the positive y direction, so we add settings.gravity to the y velocity
         # to make the square go up more slowly. Eventually, the square will have
         # a positive y velocity, and gravity will pull the square down.
-
+        #drag code
+        velocity_x = velocity_x * 0.99
+        velocity_y = velocity_y * 0.99
         velocity_y += settings.gravity * settings.d_t
         
         # Update the position with the velocity. Like with the velocity, we change
@@ -103,9 +107,23 @@ while running:
     # If the square hits the ground, stop the square from falling.
     if y_pos + settings.square_size > settings.screen_height:
         y_pos = settings.screen_height - settings.square_size
-        velocity_y = 0
-        velocity_x = 0
-        is_jumping = False
+        #velocity_y = 0
+        #velocity_x = 0
+        velocity_y = -velocity_y
+        if keys[pygame.K_SPACE]:
+            settings.jump_velocity_x = 000.0
+            velocity_y = -settings.jump_velocity_y
+            settings.jump_velocity_x = 100.0
+            #velocity_x = settings.jump_velocity_x * x_direction
+            is_jumping = True
+
+        elif keys[pygame.K_d]:
+            velocity_x = settings.jump_velocity_x
+            is_jumping = True
+
+        elif keys[pygame.K_a]:
+            velocity_x = -settings.jump_velocity_x
+            is_jumping = True
 
     # Fill the screen with background color (clears previous frame)
     screen.fill(settings.background_color)
