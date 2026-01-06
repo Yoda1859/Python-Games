@@ -14,8 +14,8 @@ class GameSettings:
     """Class for keeping track of game settings and constants."""
     screen_width: int = 500
     screen_height: int = 500
-    square_size: int = 15
-    square_color: tuple = (0, 100, 100)  # Black
+    square_size: int = 10
+    square_color: tuple = (100, 0, 255)  # Black
     background_color: tuple = (255, 255, 255)  # White
     fps: int = 30
     gravity: float = 60.0  # Acceleration due to gravity
@@ -59,19 +59,19 @@ while running:
 
     # Continuously jump. If the square is not jumping, make it jump
     if is_jumping is False:
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_a] and keys[pygame.K_SPACE]:
+            velocity_x = -settings.jump_velocity_x
+            is_jumping = True
+
+        elif keys[pygame.K_d] and keys[pygame.K_SPACE]:
+            velocity_x = settings.jump_velocity_x
+            is_jumping = True
+
+        elif keys[pygame.K_SPACE]:
             settings.jump_velocity_x = 000.0
             velocity_y = -settings.jump_velocity_y
             settings.jump_velocity_x = 100.0
             #velocity_x = settings.jump_velocity_x * x_direction
-            is_jumping = True
-
-        elif keys[pygame.K_d]:
-            velocity_x = settings.jump_velocity_x
-            is_jumping = True
-
-        elif keys[pygame.K_a]:
-            velocity_x = -settings.jump_velocity_x
             is_jumping = True
 
     else: # the square is jumping
@@ -83,17 +83,17 @@ while running:
         velocity_x = velocity_x * 0.99
         velocity_y = velocity_y * 0.99
         velocity_y += settings.gravity * settings.d_t
-        
+
         # Update the position with the velocity. Like with the velocity, we change
         # the position by adding the velocity, not setting it to the velocity, and
         # we change it a bit each frame.
         y_pos += velocity_y * settings.d_t
         x_pos += velocity_x * settings.d_t
-        
+
     # If the square hits one side of the screen or the other, bounce the square
     if x_pos <= 0 or x_pos + settings.square_size >= settings.screen_width:
         velocity_x = -velocity_x
-        
+
         # Update direction tracking
         x_direction = -x_direction 
         # This way is more reliable, since it will always be 1 or -1 and direction is tied to velocity
@@ -124,6 +124,14 @@ while running:
         elif keys[pygame.K_a]:
             velocity_x = -settings.jump_velocity_x
             is_jumping = True
+
+    #right wall
+    if x_pos +settings.square_size > settings.screen_width:
+        x_pos = settings.screen_width - settings.square_size      
+
+    #left wall
+    if x_pos < 0:
+        x_pos = 0
 
     # Fill the screen with background color (clears previous frame)
     screen.fill(settings.background_color)

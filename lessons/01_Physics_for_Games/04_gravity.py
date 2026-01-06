@@ -28,7 +28,7 @@ class GameSettings:
 
     jump_velocity: int = 170
     white: tuple = (255, 255, 255)
-    black: tuple = (0, 0, 0)
+    black: tuple = (100, 0, 255)
 
     gravity: float = 60.0 # acceleration, the change in velocity per frame
     d_t: float = 1.0/30
