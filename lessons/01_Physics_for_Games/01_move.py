@@ -36,9 +36,10 @@ def main():
     y = SCREEN_HEIGHT // 2 - SQUARE_SIZE // 2
 
     running = True
+    SQUARE_COLOR = (0, 100, 100)
     screen.fill(BACKGROUND_COLOR)
     while running:
-
+        #screen.fill(BACKGROUND_COLOR)
         # Event handling
         for event in pygame.event.get():
 
@@ -55,6 +56,16 @@ def main():
         d_y = 0
 
         # Move the square based on arrow keys
+        if keys[pygame.K_e]:
+            SQUARE_COLOR = (100, 0, 0)
+
+        if keys[pygame.K_r]:
+            SQUARE_COLOR = (0, 100, 100)
+
+        if keys[pygame.K_SPACE]:
+            screen.fill(BACKGROUND_COLOR)
+            SQUARE_COLOR = (0, 100, 100)
+
         if keys[pygame.K_a]:
             d_x = -v * d_t
 
@@ -70,7 +81,6 @@ def main():
         # Update the position of the square
         x = x + d_x
         y = y + d_y
-
 
         # Prevent the square from going off the screen
         x = max(0, min(SCREEN_WIDTH - SQUARE_SIZE, x))

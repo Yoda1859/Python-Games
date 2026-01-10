@@ -33,11 +33,11 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-         
+ 
     # Calculate the spring force, which is the force that pulls the square back
     # to the center, as if it was attached to a spring
 
-    
+
     # Calculate the spring force, accounting for mass (F = -k*x)
     # Force divided by mass gives acceleration (F = ma → a = F/m)
     a = (-K * (x_pos - (SCREEN_WIDTH-SQUARE_SIZE) // 2)) / mass
@@ -46,7 +46,7 @@ while running:
     # the velocity by adding the acceleration, not setting it to the acceleration, 
     # and we change it a bit each frame. 
     velocity += a * d_t
-    
+
     # Update the position with the velocity. Like with the velocity, we change
     # the position by adding the velocity, not setting it to the velocity, and
     # we change it a bit each frame.
