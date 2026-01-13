@@ -14,9 +14,9 @@ pygame.init()
 # Constants
 SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
 SQUARE_SIZE = 10
-SQUARE_COLOR = (0, 100, 100) # Red-Green-Blue color in the range 0-255
+SQUARE_COLOR = (0, 0, 0) # Red-Green-Blue color in the range 0-255
 BACKGROUND_COLOR = (255, 255, 255) # White
-SQUARE_SPEED = 170 
+SQUARE_SPEED = 170
 FPS = 60
 
 v = SQUARE_SPEED  # Speed of the square in pixels per second
@@ -24,7 +24,7 @@ d_t = 1 / FPS  # Time step for physics calculations
 
 # Initialize the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Move the Square")
+pygame.display.set_caption("Draw the Square")
 
 # Clock to control the frame rate
 clock = pygame.time.Clock()
@@ -36,7 +36,7 @@ def main():
     y = SCREEN_HEIGHT // 2 - SQUARE_SIZE // 2
 
     running = True
-    SQUARE_COLOR = (0, 100, 100)
+    SQUARE_COLOR = (0, 0, 0)
     screen.fill(BACKGROUND_COLOR)
     while running:
         #screen.fill(BACKGROUND_COLOR)
@@ -57,26 +57,45 @@ def main():
 
         # Move the square based on arrow keys
         if keys[pygame.K_e]:
-            SQUARE_COLOR = (100, 0, 0)
+            SQUARE_COLOR = (100, 0, 100)
 
         if keys[pygame.K_r]:
-            SQUARE_COLOR = (0, 100, 100)
+            SQUARE_COLOR = (0, 0, 0)
+
+        if keys[pygame.K_v]:
+            y = SCREEN_HEIGHT - SQUARE_SIZE
 
         if keys[pygame.K_SPACE]:
             screen.fill(BACKGROUND_COLOR)
-            SQUARE_COLOR = (0, 100, 100)
+            SQUARE_COLOR = (0, 0, 0)
 
         if keys[pygame.K_a]:
             d_x = -v * d_t
 
+        if keys[pygame.K_LEFT]:
+            d_x = -v * d_t
+            screen.fill(BACKGROUND_COLOR)
+   
         if keys[pygame.K_d]:
             d_x = v * d_t
-  
+
+        if keys[pygame.K_RIGHT]:
+            d_x = v * d_t    
+            screen.fill(BACKGROUND_COLOR)
+
         if keys[pygame.K_w]:
             d_y = -v * d_t
 
+        if keys[pygame.K_UP]:
+            d_y = -v * d_t
+            screen.fill(BACKGROUND_COLOR)
+
         if keys[pygame.K_s]:
             d_y = v * d_t
+
+        if keys[pygame.K_DOWN]:
+            d_y = v * d_t    
+            screen.fill(BACKGROUND_COLOR)
 
         # Update the position of the square
         x = x + d_x
@@ -85,7 +104,6 @@ def main():
         # Prevent the square from going off the screen
         x = max(0, min(SCREEN_WIDTH - SQUARE_SIZE, x))
         y = max(0, min(SCREEN_HEIGHT - SQUARE_SIZE, y))
-
         # This will clear the screen by filling it 
         # with the background color. If we didn't do this, 
         # the square would leave a trail behind it.
