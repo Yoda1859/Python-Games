@@ -65,9 +65,11 @@ def main():
         if keys[pygame.K_v]:
             y = SCREEN_HEIGHT - SQUARE_SIZE
 
+        if keys[pygame.K_t]:
+            y = -SCREEN_HEIGHT
+
         if keys[pygame.K_SPACE]:
             screen.fill(BACKGROUND_COLOR)
-            SQUARE_COLOR = (0, 0, 0)
 
         if keys[pygame.K_a]:
             d_x = -v * d_t

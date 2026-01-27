@@ -61,10 +61,12 @@ while running:
     if is_jumping is False:
         if keys[pygame.K_a] and keys[pygame.K_SPACE]:
             velocity_x = -settings.jump_velocity_x
+            velocity_y = -settings.jump_velocity_y
             is_jumping = True
 
         elif keys[pygame.K_d] and keys[pygame.K_SPACE]:
             velocity_x = settings.jump_velocity_x
+            velocity_y = -settings.jump_velocity_y
             is_jumping = True
 
         elif keys[pygame.K_SPACE]:
