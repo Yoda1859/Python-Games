@@ -1,8 +1,8 @@
 """
 Implementing Gravity
 
-This program will demonstrate a simple implementation of gravity in a game, 
-the the player constantly jumping. Notice that using gravity makes the player
+This program will demonstrate a simple implementation of gravity in a game,
+the player constantly jumping. Notice that using gravity makes the player
 jump more realistic. The player goes up quickly, but falls slowly. 
 
 """
@@ -28,7 +28,7 @@ class GameSettings:
 
     jump_velocity: int = 170
     white: tuple = (255, 255, 255)
-    black: tuple = (100, 0, 255)
+    black: tuple = (0, 0, 0)
 
     gravity: float = 60.0 # acceleration, the change in velocity per frame
     d_t: float = 1.0/30
