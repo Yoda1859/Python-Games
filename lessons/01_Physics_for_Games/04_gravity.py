@@ -63,8 +63,10 @@ while running:
     if is_jumping is False:
         if keys[pygame.K_LSHIFT] and keys[pygame.K_SPACE]:
             settings.jump_velocity = 200
+            settings.gravity = 70
             d_v_y = -settings.jump_velocity
             settings.jump_velocity = 170
+            settings.gravity = 70
             is_jumping = True
 
         elif keys[pygame.K_SPACE]:

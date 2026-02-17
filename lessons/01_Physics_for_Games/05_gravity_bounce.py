@@ -18,9 +18,9 @@ class GameSettings:
     square_color: tuple = (0, 0, 0)  # Black
     background_color: tuple = (255, 255, 255)  # White
     fps: int = 30
-    gravity: float = 200.0  # Acceleration due to gravity
-    jump_velocity_y: float = 200.0  # Initial jump velocity in y direction
-    jump_velocity_x: float = 100.0  # Initial jump velocity in x direction
+    gravity: float = 250.0  # Acceleration due to gravity
+    jump_velocity_y: float = 300.0  # Initial jump velocity in y direction
+    jump_velocity_x: float = 230.0  # Initial jump velocity in x direction
     d_t: float = 1.0/30  # Time step for physics calculations
 
 # Initialize Pygame
@@ -82,8 +82,8 @@ while running:
         # to make the square go up more slowly. Eventually, the square will have
         # a positive y velocity, and gravity will pull the square down.
         #drag code
-        velocity_x = velocity_x * 0.99
-        velocity_y = velocity_y * 0.99
+        velocity_x = velocity_x * 0.97
+        velocity_y = velocity_y * 0.97
         velocity_y += settings.gravity * settings.d_t
 
         # Update the position with the velocity. Like with the velocity, we change
