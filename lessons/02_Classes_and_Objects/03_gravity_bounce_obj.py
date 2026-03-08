@@ -144,7 +144,7 @@ class Player:
             self.is_jumping = True
 
     def draw(self, screen):
-        pygame.draw.rect(screen, Colors.BLACK, (self.x, self.y, self.width, self.height))
+        pygame.draw.rect(screen, Colors.RED, (self.x, self.y, self.width, self.height))
 
 
 settings = GameSettings()
