@@ -27,8 +27,8 @@ class Colors:
     """Constants for Colors"""
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
-    RED = (255, 0, 0)
-
+    RED = (255, 120, 0)
+    ORANGE = (255, 120, 0)
 
 class GameSettings:
     """Settings for the game"""
