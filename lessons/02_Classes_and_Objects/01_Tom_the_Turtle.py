@@ -28,7 +28,6 @@ Assignment 4:
 
 """
 import math
-
 import pygame
 
 
