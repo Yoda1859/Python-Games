@@ -50,7 +50,6 @@ class GameSettings:
     FPS = 30
     d_t = 1 / FPS # Time step
 
-
 class Game:
     """Main object for the top level of the game. Holds the main loop and other
     update, drawing and collision methods that operate on multiple other
@@ -70,7 +69,6 @@ class Game:
     def add_player(self, player):
         self.players.append(player)
 
-
     def run(self):
         """Main game loop"""
 
@@ -84,12 +82,11 @@ class Game:
             for player in self.players:
                 player.update()
                 player.draw(self.screen)
-                
+
             pygame.display.flip()
             self.clock.tick(self.settings.FPS)
 
         pygame.quit()
-
 
 class Player:
     """Player class, just a bouncing rectangle"""
@@ -100,13 +97,13 @@ class Player:
 
         self.width = settings.player_width
         self.height = settings.player_height
-      
+
         self.is_jumping = False
         self.v_jump = settings.jump_v_y
 
         self.y = settings.player_start_y if settings.player_start_y is not None else settings.height - self.height
         self.x = settings.player_start_x
-        
+
         self.v_x = settings.v_0_x  # X Velocity
         self.v_y = settings.v_0_y  # Y Velocity
 
@@ -139,13 +136,13 @@ class Player:
 
     def update_jump(self):
         """Handle the player's jumping logic"""
-        
+
         if not self.is_jumping:
             self.v_y = -self.v_jump
             self.is_jumping = True
 
     def draw(self, screen):
-        pygame.draw.rect(screen, Colors.RED, (self.x, self.y, self.width, self.height))
+        pygame.draw.rect(screen, Colors.ORANGE , (self.x, self.y, self.width, self.height))
 
 
 settings = GameSettings()
@@ -153,6 +150,5 @@ game = Game(settings)
 
 p1 = Player(game)
 game.add_player(p1)
-
 
 game.run()

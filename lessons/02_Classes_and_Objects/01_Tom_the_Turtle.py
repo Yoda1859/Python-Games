@@ -25,11 +25,9 @@ Assignment 4:
    then calling your function, for both the base `Turtle` class and your derived
    class.
 
-
 """
 import math
 import pygame
-
 
 def event_loop():
     """Wait until user closes the window"""
@@ -70,7 +68,17 @@ class Turtle:
 
     def pencolor(self, color):
         self.color = color
-    
+
+    def pen_up(self, distance):
+        radian_angle = math.radians(self.angle)
+        dx = math.cos(radian_angle) * distance
+        dy = math.sin(radian_angle) * distance
+        self.x += dx
+        self.y -= dy
+
+    def print_location(self):
+        print(self.y, self.x)
+
 class Little_Turtle(Turtle):
     def __init__(self, screen, x: int, y: int):
         self.x = x
@@ -78,6 +86,7 @@ class Little_Turtle(Turtle):
         self.screen = screen
         self.angle = 0  # Angle in degrees, starting facing right
         self.color = 'black'
+
     def right(self, angle):
         self.angle = (self.angle - angle) % 360
 
@@ -100,17 +109,28 @@ yellow = (255, 255, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 purple = (255, 0, 255)
+pink = (255, 120, 120)
 
 screen.fill(white)
 turtle = Turtle(screen, screen.get_width() // 2, screen.get_height() // 2)  # Start at the center of the screen
 little_turtle = Little_Turtle(screen, screen.get_width() // 2, screen.get_height() // 2)  # Start at the center of the screen
 
 # Draw a square using turtle-style commands
-for _ in range(72):
+for _ in range(120):
+    little_turtle.pencolor('orange')
+    little_turtle.forward(25)
+    little_turtle.left(22)
+    little_turtle.right(3)
+    little_turtle.pencolor('yellow')
+    little_turtle.forward(100)
+    little_turtle.left(90)
+    little_turtle.right(3)
     little_turtle.pencolor('red')
-    little_turtle.forward(100)  # Move forward by 100 pixels
-    little_turtle.left(90)  # Turn left by 90 degrees
-    little_turtle.right(5)
+    little_turtle.forward(50)
+    little_turtle.left(45)
+    little_turtle.right(3)
+
+little_turtle.print_location()
 
 # Display the drawing
 pygame.display.flip()
