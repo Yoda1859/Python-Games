@@ -8,10 +8,10 @@ allows for more complex games with multiple objects.
 
 ## Assignment 5
 
-1. Open `03_gravity_bounce_obj.py` 
+1. Open `03_gravity_bounce_obj.py`
 2. Review the program and try to understand how it works.
 3. Change the program so that the player's initial velocity and position are set
-   in the initializer to the `Player` class. 
+   in the initializer to the `Player` class.
 4. Add a color for the player, configurable in the initializer.
 5. Add a second player to the game. The second player should be a different
    color and have different initial position and velocity.
@@ -22,14 +22,13 @@ Player class!), of different colors, bouncing around in different trajectories.
 """
 import pygame
 
-
 class Colors:
     """Constants for Colors"""
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
-    RED = (225, 0, 0)
-    ORANGE = (255, 120, 0)
-    PINK = (225, 120, 120)
+    RED = (225, 60, 0)
+    YELLOW = (255, 255, 220)
+    BLUE = (0, 140, 170)
 
 class GameSettings:
     """Settings for the game"""
@@ -54,7 +53,7 @@ class Game:
     """Main object for the top level of the game. Holds the main loop and other
     update, drawing and collision methods that operate on multiple other
     objects, like the player and obstacles."""
-    
+
     def __init__(self, settings: GameSettings):
         pygame.init()
 
@@ -77,7 +76,7 @@ class Game:
                 if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                     self.running = False
 
-            self.screen.fill(Colors.WHITE)
+            self.screen.fill(Colors.YELLOW)
 
             for player in self.players:
                 player.update()
@@ -91,18 +90,23 @@ class Game:
 class Player:
     """Player class, just a bouncing rectangle"""
 
-    def __init__(self, game: Game):
+    def __init__(self, game: Game, x, y, vx, vy, color):
         self.game = game
         settings = game.settings
-
         self.width = settings.player_width
         self.height = settings.player_height
-
         self.is_jumping = False
         self.v_jump = settings.jump_v_y
 
-        self.y = settings.player_start_y if settings.player_start_y is not None else settings.height - self.height
-        self.x = settings.player_start_x
+        #self.y = settings.player_start_y if settings.player_start_y is not None else settings.height - self.height
+        #self.x = settings.player_start_x
+        self.y = y
+        self.x = x
+
+        self.v_y = vy
+        self.v_x = vx
+
+        self.color = color
 
         self.v_x = settings.v_0_x  # X Velocity
         self.v_y = settings.v_0_y  # Y Velocity
@@ -142,13 +146,14 @@ class Player:
             self.is_jumping = True
 
     def draw(self, screen):
-        pygame.draw.rect(screen, Colors.ORANGE , (self.x, self.y, self.width, self.height))
-
+        pygame.draw.rect(screen, self.color , (self.x, self.y, self.width, self.height))
 
 settings = GameSettings()
 game = Game(settings)
 
-p1 = Player(game)
+p1 = Player(game, 400, 500, 75, 90, Colors.RED)
 game.add_player(p1)
+p2 = Player(game, 0, 0, 150, 0, Colors.BLUE)
+game.add_player(p2)
 
 game.run()
