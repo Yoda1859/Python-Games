@@ -7,14 +7,14 @@ pygame.init()
 # Settings class
 class Settings:
     """A class to store all settings for the game."""
-    SCREEN_WIDTH = 800
-    SCREEN_HEIGHT = 600
+    SCREEN_WIDTH = 500
+    SCREEN_HEIGHT = 500
     PLAYER_SIZE = 20
     LINE_COLOR = (0, 255, 0)
     PLAYER_COLOR = (0, 0, 255)
     BACKGROUND_COLOR = (255, 255, 255)
     TEXT_COLOR = (0, 0, 0)
-    FPS = 30
+    FPS = 100
     ANGLE_CHANGE = 3
     LENGTH_CHANGE = 5
     INITIAL_LENGTH = 100
