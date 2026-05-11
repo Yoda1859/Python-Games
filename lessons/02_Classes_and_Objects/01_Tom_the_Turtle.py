@@ -120,15 +120,15 @@ for _ in range(120):
     little_turtle.pencolor('orange')
     little_turtle.forward(25)
     little_turtle.left(22)
-    little_turtle.right(3)
+    little_turtle.right(5)
     little_turtle.pencolor('yellow')
     little_turtle.forward(100)
     little_turtle.left(90)
-    little_turtle.right(3)
+    little_turtle.right(5)
     little_turtle.pencolor('red')
     little_turtle.forward(50)
     little_turtle.left(45)
-    little_turtle.right(3)
+    little_turtle.right(5)
 
 little_turtle.print_location()
 
