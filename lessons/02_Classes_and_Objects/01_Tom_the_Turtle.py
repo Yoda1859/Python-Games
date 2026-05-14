@@ -116,13 +116,13 @@ turtle = Turtle(screen, screen.get_width() // 2, screen.get_height() // 2)  # St
 little_turtle = Little_Turtle(screen, screen.get_width() // 2, screen.get_height() // 2)  # Start at the center of the screen
 
 # Draw a square using turtle-style commands
-for _ in range(120):
-    little_turtle.pencolor('orange')
-    little_turtle.forward(25)
+for _ in range(200):
+    little_turtle.pencolor('yellow')
+    little_turtle.forward(65)
     little_turtle.left(22)
     little_turtle.right(5)
-    little_turtle.pencolor('yellow')
-    little_turtle.forward(100)
+    little_turtle.pencolor('orange')
+    little_turtle.forward(50)
     little_turtle.left(90)
     little_turtle.right(5)
     little_turtle.pencolor('red')
