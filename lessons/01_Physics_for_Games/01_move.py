@@ -56,7 +56,7 @@ def main():
         d_y = 0
 
         # Move the square based on arrow keys
-        if keys[pygame.K_e]:
+        if keys[pygame.K_f]:
             SQUARE_COLOR = (200, 200, 200)
 
         if keys[pygame.K_r]:
@@ -83,6 +83,9 @@ def main():
 
         if keys[pygame.K_s]:
             d_y = v * d_t
+
+        if keys[pygame.K_e]:
+            SQUARE_COLOR = (255, 255, 255)
 
         # Update the position of the square
         x = x + d_x

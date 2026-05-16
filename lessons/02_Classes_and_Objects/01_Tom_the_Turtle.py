@@ -100,7 +100,7 @@ width, height = 500, 500
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Turtle Style Drawing")
 
-# Colors
+# Colors:
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
