@@ -13,11 +13,11 @@ pygame.init()
 
 # Constants
 SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
-SQUARE_SIZE = 8
+SQUARE_SIZE = 5
 SQUARE_COLOR = (0, 0, 0) # Red-Green-Blue color in the range 0-255
 BACKGROUND_COLOR = (255, 255, 255) # White
 SQUARE_SPEED = 100
-FPS = 60
+FPS = 100
 
 v = SQUARE_SPEED  # Speed of the square in pixels per second
 d_t = 1 / FPS  # Time step for physics calculations

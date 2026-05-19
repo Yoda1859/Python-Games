@@ -11,10 +11,10 @@ class Person:
 
     def say_hello(self, message: str):
         """Prints a greeting to the console."""
-        print(f"Hello, my name is {self.name} and I am {self.age} years old. {message}")
+        print(f"{message} My name is {self.name} and I am {self.age} years old.")
 
     def full_name(self, message: str):
-        print(f"Hello, my full name is {self.name} {self.last}. {message}")    
+        print(f"{message} My full name is {self.name} {self.last}.")    
 
 class Parent(Person):
     """Parent represents a parent in our system."""
@@ -50,7 +50,7 @@ class Parent(Person):
                 print(f"  {child.name} {child.age}")
 
     def print_family(self, message: str):
-        print(f"My spouse is {self.spouse.name} and I have {len(self.children)} children. {message}")
+        print(f"{message} My spouse is {self.spouse.name} and I have {len(self.children)} children.")
 
         if len(self.children) > 0:
             print("Their names are:")
