@@ -10,8 +10,8 @@ class Settings:
     SCREEN_WIDTH = 500
     SCREEN_HEIGHT = 500
     PLAYER_SIZE = 20
-    LINE_COLOR = (0, 255, 0)
-    PLAYER_COLOR = (0, 0, 255)
+    LINE_COLOR = (0, 0, 0)
+    PLAYER_COLOR = (0, 0, 0)
     BACKGROUND_COLOR = (255, 255, 255)
     TEXT_COLOR = (0, 0, 0)
     FPS = 100
@@ -110,14 +110,14 @@ def main():
         keys = pygame.key.get_pressed()
         
         if key_limit%3 == 0: # Limit frequency of key presses so the user can set exact angles
-            if keys[pygame.K_LEFT]:
+            if keys[pygame.K_a]:
                 player.direction_vector = player.direction_vector.rotate(-Settings.ANGLE_CHANGE)
-            elif keys[pygame.K_RIGHT]:
+            elif keys[pygame.K_d]:
                 player.direction_vector = player.direction_vector.rotate(Settings.ANGLE_CHANGE)
                 
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_w]:
             player.direction_vector.scale_to_length(player.direction_vector.length() + Settings.LENGTH_CHANGE)
-        elif keys[pygame.K_DOWN]:
+        elif keys[pygame.K_s]:
             player.direction_vector.scale_to_length(player.direction_vector.length() - Settings.LENGTH_CHANGE)
         elif keys[pygame.K_SPACE]:
             player.move()
