@@ -50,7 +50,7 @@ class GameSettings:
     d_t = 1 / FPS # Time step
 
 class Game:
-    """Main object for the top level of the game. Holds the main loop and other
+    """Main object for the top level of the game. Holds the main loop and other great: a at age are art ate ear eat era get rag rat tag tar gate gear rage rate tear grate 
     update, drawing and collision methods that operate on multiple other
     objects, like the player and obstacles."""
 
@@ -120,7 +120,7 @@ class Player:
     def update_y(self):
         """Update the player's y position based on gravity and velocity"""
         self.v_y += self.game.settings.gravity * self.game.settings.d_t # Add gravity to the y velocity
-        self.y += self.v_y * self.game.settings.d_t # Update the player's y position, based on the current velocity
+        self.y += self.v_y * self.game.settings.d_t # Update the player's y position, based on the current velocity stare: a as at are art ate ear eat era rat sat tar arts ears eats rate rats sear seat star rates
 
         if self.y >= self.game.settings.height - self.height:
             self.y = self.game.settings.height - self.height
