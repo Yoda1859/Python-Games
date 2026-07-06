@@ -33,7 +33,7 @@ class GameSettings:
     player_width: int = 20
     player_height: int = 20
     player_jump_velocity: float = 15
-    frame_rate: int = 15
+    frame_rate: int = 30
 
 
 class Game:

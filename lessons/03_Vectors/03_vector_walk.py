@@ -45,27 +45,26 @@ class Player:
     def draw(self, show_line=True):
         """Draws the player and the direction vector on the screen."""
         pygame.draw.rect(screen, Settings.PLAYER_COLOR, (self.position.x - Settings.PLAYER_SIZE // 2, self.position.y - Settings.PLAYER_SIZE // 2, Settings.PLAYER_SIZE, Settings.PLAYER_SIZE))
-        
+
         # The end position of the direction vector is the player's position plus the direction vector
         end_position = self.position + self.direction_vector
-        
+
         if show_line:
             pygame.draw.line(screen, Settings.LINE_COLOR, self.position, end_position, 2)
 
     def move(self):
         """Moves the player in the direction of the current angle."""
-        
-        
+
         init_position = self.position # Save the initial position for the animation
-        
+
         # Calculate the final position after moving. Its just addition!
         final_position = self.position + self.direction_vector
-        
+
         # The rest is just for animation
         length = self.direction_vector.length()
         N = int(length // 3)
         step = (final_position - self.position) / N
-       
+
         for i in range(N):
             self.position += step
             screen.fill(Settings.BACKGROUND_COLOR)
@@ -98,35 +97,34 @@ def draw_vector_info(player):
 def main():
     player = Player(Settings.SCREEN_WIDTH // 2, Settings.SCREEN_HEIGHT // 2)
     running = True
-    
+
     pygame.key.set_repeat(50, 50)
-    
+
     key_limit = 0
     while running:
         key_limit += 1
-        
+
         screen.fill(Settings.BACKGROUND_COLOR)
-        
+
         keys = pygame.key.get_pressed()
-        
+
         if key_limit%3 == 0: # Limit frequency of key presses so the user can set exact angles
             if keys[pygame.K_a]:
                 player.direction_vector = player.direction_vector.rotate(-Settings.ANGLE_CHANGE)
             elif keys[pygame.K_d]:
                 player.direction_vector = player.direction_vector.rotate(Settings.ANGLE_CHANGE)
-                
+
         if keys[pygame.K_w]:
             player.direction_vector.scale_to_length(player.direction_vector.length() + Settings.LENGTH_CHANGE)
         elif keys[pygame.K_s]:
             player.direction_vector.scale_to_length(player.direction_vector.length() - Settings.LENGTH_CHANGE)
         elif keys[pygame.K_SPACE]:
             player.move()
-                
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-                
+
         # Draw the player and the direction vector
         player.draw()
 
@@ -135,7 +133,7 @@ def main():
 
         pygame.display.flip()
         clock.tick(Settings.FPS)
-    
+
     pygame.quit()
 
 if __name__ == "__main__":
