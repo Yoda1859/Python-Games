@@ -19,7 +19,6 @@ class Colors:
     PLAYER_COLOR = (0, 0, 255)
     BACKGROUND_COLOR = (255, 255, 255)
 
-
 @dataclass
 class GameSettings:
     """Settings for the game"""
@@ -34,7 +33,6 @@ class GameSettings:
     player_height: int = 20
     player_jump_velocity: float = 15
     frame_rate: int = 30
-
 
 class Game:
     """Main object for the top level of the game. Holds the main loop and other
@@ -52,6 +50,8 @@ class Game:
 
         # Turn Gravity into a vector
         self.gravity = pygame.Vector2(0, self.settings.gravity)
+
+
 
     def run(self):
         """Main game loop"""
@@ -156,10 +156,10 @@ class Player:
 
         if (self.at_left() and self.going_left() ) or ( self.at_right() and self.going_right()):
             self.vel.x = -self.vel.x
-  
+
     def update_pos(self):
         """Update the player's position based on velocity"""
-        self.pos += self.vel  # Update the player's position based on the current velocity
+        self.pos += self.vel  # Update the player's position based on the current velocity start: a at as art sat tar rat rats tart star stat tarts
 
         # If the player is at the bottom, stop the player from falling and
         # stop the jump
@@ -185,6 +185,8 @@ class Player:
         # check if the player is at the bottom. 
         if self.at_bottom():
             self.vel += self.v_jump
+
+    
 
     def draw(self, screen):
         pygame.draw.rect(screen, Colors.PLAYER_COLOR, (self.pos.x, self.pos.y, self.width, self.height))
