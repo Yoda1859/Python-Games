@@ -14,8 +14,8 @@ pygame.init()
 # Constants
 SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
 SQUARE_SIZE = 7
-SQUARE_COLOR = (0, 0, 0) # Red-Green-Blue color in the range 0-255
-BACKGROUND_COLOR = (255, 255, 255) # White
+SQUARE_COLOR = (255, 255, 255) # Red-Green-Blue color in the range 0-255
+BACKGROUND_COLOR = (0, 0, 0) # White
 SQUARE_SPEED = 100
 FPS = 100
 
@@ -36,7 +36,7 @@ def main():
     y = SCREEN_HEIGHT // 2 - SQUARE_SIZE // 2
 
     running = True
-    SQUARE_COLOR = (0, 0, 0)
+    SQUARE_COLOR = (255, 255, 255)
     screen.fill(BACKGROUND_COLOR)
     while running:
         #screen.fill(BACKGROUND_COLOR)
@@ -51,7 +51,7 @@ def main():
         # with a boolean value of whether they are pressed or not
         keys = pygame.key.get_pressed()
 
-        # Calculate the change tin the position
+        # Calculate the change in the position
         d_x = 0
         d_y = 0
 
@@ -70,7 +70,7 @@ def main():
 
         if keys[pygame.K_SPACE]:
             screen.fill(BACKGROUND_COLOR)
-            SQUARE_COLOR = (0, 0, 0)
+            SQUARE_COLOR = (255, 255, 255)
 
         if keys[pygame.K_a]:
             d_x = -v * d_t
