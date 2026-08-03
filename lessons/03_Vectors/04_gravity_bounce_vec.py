@@ -51,8 +51,6 @@ class Game:
         # Turn Gravity into a vector
         self.gravity = pygame.Vector2(0, self.settings.gravity)
 
-
-
     def run(self):
         """Main game loop"""
         player = Player(self)
@@ -87,9 +85,14 @@ class Player:
         # Player position
         self.pos = pygame.Vector2(settings.player_start_x, 
                                   settings.player_start_y if settings.player_start_y is not None else settings.height - self.height)
+        #drag code
+        #self.drag_x = -GameSettings.player_v_x * 0.1
+        #self.drag_y = -GameSettings.player_v_y * 0.1
 
         # Player's velocity
-        self.vel = pygame.Vector2(settings.player_v_x, settings.player_v_y)  # Velocity vector
+        self.vel = pygame.Vector2(settings.player_v_x , settings.player_v_y )  # Velocity vector
+        self.drag = -self.vel * 0.005
+        self.thrust = self.vel * 1 
 
     # Direction functions. IMPORTANT! Using these functions isn't really
     # necessary, but it makes the code more readable. You could just use
@@ -142,6 +145,7 @@ class Player:
         """Update the player's velocity based on gravity and bounce on edges"""
 
         self.vel += self.game.gravity  # Add gravity to the velocity
+        self.vel += self.drag
 
         if self.at_bottom() and self.going_down():
             self.vel.y = 0
@@ -159,7 +163,7 @@ class Player:
 
     def update_pos(self):
         """Update the player's position based on velocity"""
-        self.pos += self.vel  # Update the player's position based on the current velocity start: a at as art sat tar rat rats tart star stat tarts
+        self.pos += self.vel # Update the player's position based on the current velocity
 
         # If the player is at the bottom, stop the player from falling and
         # stop the jump
@@ -181,12 +185,13 @@ class Player:
     def update_jump(self):
         """Handle the player's jumping logic"""
 
+        keys = pygame.key.get_pressed()
         # Notice that we've gotten rid of self.is_jumping, because we can just
         # check if the player is at the bottom. 
         if self.at_bottom():
-            self.vel += self.v_jump
-
-    
+            if keys[pygame.K_SPACE]:
+                self.vel += self.thrust
+                self.vel += self.v_jump
 
     def draw(self, screen):
         pygame.draw.rect(screen, Colors.PLAYER_COLOR, (self.pos.x, self.pos.y, self.width, self.height))
