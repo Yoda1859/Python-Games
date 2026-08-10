@@ -5,18 +5,17 @@ This version of the Gravity Bounce program uses Pygame's Vector2 class to handle
 the player's position and velocity. This makes the code more readable and
 understandable, and makes it easier to add more complex features to the game.
 
-
 """
 import pygame
 from dataclasses import dataclass
-
 
 class Colors:
     """Constants for Colors"""
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     RED = (255, 0, 0)
-    PLAYER_COLOR = (0, 0, 255)
+    PLAYER_COLOR = (255, 0, 0)
+    LINE_COLOR = (0, 0, 0)
     BACKGROUND_COLOR = (255, 255, 255)
 
 @dataclass
@@ -84,14 +83,14 @@ class Player:
 
         # Player position
         self.pos = pygame.Vector2(settings.player_start_x, 
-                                  settings.player_start_y if settings.player_start_y is not None else settings.height - self.height)
+                       settings.player_start_y if settings.player_start_y is not None else settings.height - self.height)
         #drag code
         #self.drag_x = -GameSettings.player_v_x * 0.1
         #self.drag_y = -GameSettings.player_v_y * 0.1
 
         # Player's velocity
         self.vel = pygame.Vector2(settings.player_v_x , settings.player_v_y )  # Velocity vector
-        self.drag = -self.vel * 0.005
+        self.drag = -self.vel * 0.0005
         self.thrust = self.vel * 1 
 
     # Direction functions. IMPORTANT! Using these functions isn't really
@@ -158,12 +157,12 @@ class Player:
         # off the screeen, because we don't want to bounce the player if it's
         # already going away from the edge
 
-        if (self.at_left() and self.going_left() ) or ( self.at_right() and self.going_right()):
-            self.vel.x = -self.vel.x
+        #if (self.at_left() and self.going_left() ) or ( self.at_right() and self.going_right()):
+            #self.vel.x = -self.vel.x
 
     def update_pos(self):
         """Update the player's position based on velocity"""
-        self.pos += self.vel # Update the player's position based on the current velocity
+        # Update the player's position based on the current velocity
 
         # If the player is at the bottom, stop the player from falling and
         # stop the jump
@@ -188,10 +187,14 @@ class Player:
         keys = pygame.key.get_pressed()
         # Notice that we've gotten rid of self.is_jumping, because we can just
         # check if the player is at the bottom. 
-        if self.at_bottom():
-            if keys[pygame.K_SPACE]:
-                self.vel += self.thrust
-                self.vel += self.v_jump
+        #if self.at_bottom():
+        if keys[pygame.K_SPACE]:
+            self.vel += self.v_jump
+            self.pos += self.vel
+            self.vel += self.thrust
+            #if self.going_up():
+                #self.pos += self.vel
+                
 
     def draw(self, screen):
         pygame.draw.rect(screen, Colors.PLAYER_COLOR, (self.pos.x, self.pos.y, self.width, self.height))
