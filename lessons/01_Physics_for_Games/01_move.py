@@ -14,8 +14,8 @@ pygame.init()
 # Constants
 SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
 SQUARE_SIZE = 7
-SQUARE_COLOR = (255, 255, 255) # Red-Green-Blue color in the range 0-255
-BACKGROUND_COLOR = (0, 0, 0) # White
+SQUARE_COLOR = (0, 0, 0) # Red-Green-Blue color in the range 0-255
+BACKGROUND_COLOR = (255, 255, 255) # White
 SQUARE_SPEED = 100
 FPS = 100
 
@@ -24,7 +24,7 @@ d_t = 1 / FPS  # Time step for physics calculations
 
 # Initialize the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Draw the Square")
+pygame.display.set_caption("Game Window")
 
 # Clock to control the frame rate
 clock = pygame.time.Clock()
@@ -36,7 +36,7 @@ def main():
     y = SCREEN_HEIGHT // 2 - SQUARE_SIZE // 2
 
     running = True
-    SQUARE_COLOR = (255, 255, 255)
+    SQUARE_COLOR = (0, 0, 0)
     screen.fill(BACKGROUND_COLOR)
     while running:
         #screen.fill(BACKGROUND_COLOR)
@@ -70,7 +70,7 @@ def main():
 
         if keys[pygame.K_SPACE]:
             screen.fill(BACKGROUND_COLOR)
-            SQUARE_COLOR = (255, 255, 255)
+            SQUARE_COLOR = (0, 0, 0)
 
         if keys[pygame.K_a]:
             d_x = -v * d_t

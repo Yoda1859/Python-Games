@@ -86,7 +86,7 @@ class Player:
                        settings.player_start_y if settings.player_start_y is not None else settings.height - self.height)
         #drag code
         #self.drag_x = -GameSettings.player_v_x * 0.1
-        #self.drag_y = -GameSettings.player_v_y * 0.1
+        #self.drag_y = -GameSettings.player_v_y * 0.1 
 
         # Player's velocity
         self.vel = pygame.Vector2(settings.player_v_x , settings.player_v_y )  # Velocity vector
@@ -155,7 +155,7 @@ class Player:
         # If the player hits one side of the screen or the other, bounce the
         # player. we are also checking if the player has a velocity going farther
         # off the screeen, because we don't want to bounce the player if it's
-        # already going away from the edge
+        # already going away from the edge 
 
         #if (self.at_left() and self.going_left() ) or ( self.at_right() and self.going_right()):
             #self.vel.x = -self.vel.x
