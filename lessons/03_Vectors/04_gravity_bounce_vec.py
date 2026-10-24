@@ -7,6 +7,7 @@ understandable, and makes it easier to add more complex features to the game.
 
 """
 import pygame
+
 from dataclasses import dataclass
 
 class Colors:
@@ -32,6 +33,8 @@ class GameSettings:
     player_height: int = 20
     player_jump_velocity: float = 15
     frame_rate: int = 30
+    LENGTH_CHANGE = 5
+    ANGLE_CHANGE = 3
 
 class Game:
     """Main object for the top level of the game. Holds the main loop and other
@@ -139,9 +142,20 @@ class Player:
         self.update_jump()
         self.update_v()
         self.update_pos()
- 
+
     def update_v(self):
         """Update the player's velocity based on gravity and bounce on edges"""
+
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_a]:
+            self.vel = self.vel.rotate(-self.game.settings.ANGLE_CHANGE)
+        elif keys[pygame.K_d]:
+            self.vel = self.vel.rotate(self.game.settings.ANGLE_CHANGE)
+        elif keys[pygame.K_w]:
+                    self.vel.scale_to_length(self.vel.length() + self.game.settings.LENGTH_CHANGE)
+        elif keys[pygame.K_s]:
+                    self.vel.scale_to_length(self.vel.length() - self.game.settings.LENGTH_CHANGE)
 
         self.vel += self.game.gravity  # Add gravity to the velocity
         self.vel += self.drag
@@ -157,12 +171,14 @@ class Player:
         # off the screeen, because we don't want to bounce the player if it's
         # already going away from the edge 
 
-        #if (self.at_left() and self.going_left() ) or ( self.at_right() and self.going_right()):
-            #self.vel.x = -self.vel.x
+        if (self.at_left() and self.going_left() ) or ( self.at_right() and self.going_right()):
+            self.vel.x = -self.vel.x
 
     def update_pos(self):
         """Update the player's position based on velocity"""
         # Update the player's position based on the current velocity
+
+        self.pos += self.vel
 
         # If the player is at the bottom, stop the player from falling and
         # stop the jump
@@ -187,17 +203,17 @@ class Player:
         keys = pygame.key.get_pressed()
         # Notice that we've gotten rid of self.is_jumping, because we can just
         # check if the player is at the bottom. 
-        #if self.at_bottom():
-        if keys[pygame.K_SPACE]:
-            self.vel += self.v_jump
-            self.pos += self.vel
-            self.vel += self.thrust
-            #if self.going_up():
+        if self.at_bottom():
+            if keys[pygame.K_SPACE]:
+                self.vel += self.v_jump
                 #self.pos += self.vel
-                
+                #self.vel += self.thrust
 
     def draw(self, screen):
         pygame.draw.rect(screen, Colors.PLAYER_COLOR, (self.pos.x, self.pos.y, self.width, self.height))
+
+        end_position = self.pos + self.vel
+        pygame.draw.line(screen, (0,0,0), self.pos, end_position, 2)
 
 settings = GameSettings()
 game = Game(settings)
