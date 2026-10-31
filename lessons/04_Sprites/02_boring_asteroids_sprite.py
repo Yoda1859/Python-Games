@@ -1,6 +1,8 @@
 import pygame
 import math
+from pathlib import Path
 
+assets = Path(__file__).parent / "images"
 
 class Settings:
     """Class to store game configuration."""
@@ -97,12 +99,18 @@ class Spaceship(pygame.sprite.Sprite):
         if keys[pygame.K_SPACE] and self.ready_to_shoot():
             self.fire_projectile()
 
+        if keys[pygame.K_UP]:
+            self.velocity = pygame.Vector2(0, -1).rotate(self.angle) * 9
+            self.rect.center += self.velocity
+
+        if keys[pygame.K_DOWN]:
+                self.velocity = pygame.Vector2(0, -1).rotate(self.angle) * -9
+                self.rect.center += self.velocity
+
         self.image = pygame.transform.rotate(self.original_image, -self.angle)
 
         # Reassigning the rect because the image has changed.
         self.rect = self.image.get_rect(center=self.rect.center)
-
-        self.rect.center += self.velocity
 
         # Dont forget this part! If you don't call the Sprite update method, the
         # sprite will not be drawn
@@ -149,6 +157,10 @@ class Projectile(pygame.sprite.Sprite):
     def update(self):
         self.rect.center += self.velocity
 
+class AlienSpaceship(Spaceship):
+
+    def create_spaceship_image(self):
+        return pygame.image. load(assets/'alien1.gif')
 
 class Game:
     """Class to manage the game loop and objects."""
@@ -215,7 +227,7 @@ if __name__ == "__main__":
 
     game = Game(settings)
 
-    spaceship = Spaceship(
+    spaceship = AlienSpaceship(
         settings, position=(settings.width // 2, settings.height // 2)
     )
 
